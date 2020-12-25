@@ -5,9 +5,6 @@ import store from './store'
 import '../public/css/reset.css'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-// Vue.use(Prism)
-
-import 'prismjs/themes/prism-okaidia.css'
 
 Vue.use(ElementUI);
 

@@ -7,7 +7,7 @@
         <router-link to="/code">Code</router-link>
       </div>
     </div>
-    <router-view style="margin-top: 100px;" />
+    <router-view style="margin-top: 100px" />
   </div>
 </template>
 
@@ -26,6 +26,7 @@ body {
 }
 
 #nav {
+  z-index: 999;
   padding: 30px 0;
   background-image: linear-gradient(141deg, #fff 0%, #1fc8db 75%, #2cb5e8 100%);
   color: #2c3e50;
