@@ -7,21 +7,13 @@
         <div v-for="(item, index) in codeList" :key="index + 1">
           <h2>{{ item.alias }}:</h2>
           <code-block :language="item.lang" :code="item.code"></code-block>
-          <code-block
-            v-if="index === 0"
-            :language="'css'"
-            :code="'p { color: red }'"
-          ></code-block>
+          <code-block v-if="index === 0" :language="'css'" :code="'p { color: red }'"></code-block>
         </div>
       </template>
 
       <el-button type="primary" @click="changeTheme('')">Click</el-button>
-      <card
-        :curOption="themeName"
-        :datalist="list"
-        class="fixed-card"
-        @on-select="onSelect"
-      ></card>
+      <card :curOption="themeName" :datalist="list" class="fixed-card" @on-select="onSelect"></card>
+      <loader :active="active"></loader>
     </main>
   </div>
 </template>
@@ -30,29 +22,31 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 // import 'prismjs'
-import Card from '@/components/Card.vue'
-import Prism from 'prismjs'
-import 'prismjs/components/prism-python'
-import CodeBlock from '@/components/CodeBlock.vue'
+import Card from "@/components/Card.vue";
+import Prism from "prismjs";
+import "prismjs/components/prism-python";
+import CodeBlock from "@/components/CodeBlock.vue";
+import Loader from "@/components/Loader.vue";
 // import loadFile from '../assets/js/loadFille';
 // const code = require('../../public/code/formula.py').default
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     CodeBlock,
     Card,
+    Loader
   },
   data() {
     return {
-      msg: 'hello',
+      msg: "hello",
       theme: null,
-      themeName: '',
+      themeName: "",
       codeList: [
         {
           code: '<pre><code class="language-css">p { color: red }</code></pre>',
-          lang: 'html',
-          alias: 'HTML',
+          lang: "html",
+          alias: "HTML"
         },
         {
           code: `#!python3
@@ -151,8 +145,8 @@ def hellen(a, b, c):
 if __name__ == "__main__":
   print('formula')
 `,
-          lang: 'python',
-          alias: 'Python',
+          lang: "python",
+          alias: "Python"
         },
         {
           code: `
@@ -169,13 +163,13 @@ function fibonacci(n) {
 }
 console.log(fibonacci(100))
           `,
-          lang: 'javascript',
-          alias: 'JS',
+          lang: "javascript",
+          alias: "JS"
         },
         {
-          code: 'const fibo = n => n <= 1 ? 1 : fibo(n-1) + fibo(n-2)',
-          lang: 'javascript',
-          alias: 'JS',
+          code: "const fibo = n => n <= 1 ? 1 : fibo(n-1) + fibo(n-2)",
+          lang: "javascript",
+          alias: "JS"
         },
         {
           code: `import math
@@ -188,48 +182,48 @@ def getSquare(r):
 def fibo(n):
     return 1 if (n <= 1) else fibo(n-1) + fibo(n-2)
     `,
-          lang: 'python',
-          alias: 'Python',
+          lang: "python",
+          alias: "Python"
         },
         {
           code: `p { font-size: 16px; }`,
-          lang: 'css',
-          alias: 'CSS',
-        },
+          lang: "css",
+          alias: "CSS"
+        }
       ],
       list: [
         {
-          label: '默认',
-          value: '',
+          label: "默认",
+          value: ""
         },
         {
-          label: '神秘',
-          value: 'coy',
+          label: "神秘",
+          value: "coy"
         },
         {
-          label: '暗黑',
-          value: 'dark',
+          label: "暗黑",
+          value: "dark"
         },
         {
-          label: '欧凯迪亚',
-          value: 'okaidia',
+          label: "欧凯迪亚",
+          value: "okaidia"
         },
         {
-          label: '时髦',
-          value: 'funky',
+          label: "时髦",
+          value: "funky"
         },
         {
-          label: '日光灯',
-          value: 'solarizedlight',
+          label: "日光灯",
+          value: "solarizedlight"
         },
         {
-          label: '暮光',
-          value: 'twilight',
+          label: "暮光",
+          value: "twilight"
         },
         {
-          label: '明日',
-          value: 'tomorrow',
-        },
+          label: "明日",
+          value: "tomorrow"
+        }
       ],
       apple:
         "\n\
@@ -248,69 +242,63 @@ def fibo(n):
                           .XMMMMMMMMMMMMMMMMMMMMMMK.\n\
                             kMMMMMMMMMMMMMMMMMMMMd\n\
                              ;kMMMMMMMWXXMMMMMMMk.\n\
-                               .cooc,.   .cooc,.\n\
-",
-    }
+                               .cooc,.   .cooc,.",
+      active: false
+    };
   },
   mounted() {
-    this.getThemeName()
+    this.getThemeName();
     // loadFile('../../public/code/formula.py')
     // this.theme = require(`prismjs/themes/prism-okaidia.css`)
     setTimeout(() => {
-      Prism.highlightAll()
-    }, 0)
-    console.log('%c' + this.apple, 'color: green')
+      Prism.highlightAll();
+    }, 0);
+    console.log("%c" + this.apple, "color: green");
   },
   methods: {
     getThemeName() {
-      let current = document.getElementById('theme')
-      let theme = current.href
-      console.log(theme)
-      let themeList = this.list.map(item => item.value)
-      console.log(themeList)
-      let result = themeList.filter(a => a && theme.includes(a))
-      console.log(result[0])
-      this.themeName = result[0] || ''
+      let current = document.getElementById("theme");
+      let theme = current.href;
+      let themeList = this.list.map(item => item.value);
+      let result = themeList.filter(a => a && theme.includes(a));
+      this.themeName = result[0] || "";
     },
     changeTheme(theme) {
-      this.themeName = theme
-      let _theme = ''
-      if (this.themeName) _theme = '-' + this.themeName
+      this.themeName = theme;
+      let _theme = "";
+      if (this.themeName) _theme = "-" + this.themeName;
       // this.theme = require(`prismjs/themes/prism${_theme}.css`)
-      let curTheme = document.getElementById('theme')
-      curTheme.setAttribute('href', `/css/themes/prism${_theme}.css`)
+      let curTheme = document.getElementById("theme");
+      curTheme.setAttribute("href", `/css/themes/prism${_theme}.css`);
       setTimeout(() => {
-        Prism.highlightAll()
-      }, 0)
+        Prism.highlightAll();
+      }, 0);
     },
     onSelect(val) {
-      this.changeTheme(val.value)
+      this.changeTheme(val.value);
     },
     handleChange(file) {
-      let reader = new FileReader()
-      if (typeof FileReader === 'undefined') {
+      let reader = new FileReader();
+      if (typeof FileReader === "undefined") {
         this.$message({
-          type: 'info',
-          message: '您的浏览器不支持文件读取。',
-        })
-        return
+          type: "info",
+          message: "您的浏览器不支持文件读取。"
+        });
+        return;
       }
-      reader.readAsText(file.raw, 'gb2312')
-      var _this = this
-      reader.onload = function (e) {
-        _this.textInfo = e.target.result
-      }
-    },
-  },
-}
+      reader.readAsText(file.raw, "gb2312");
+      var _this = this;
+      reader.onload = function(e) {
+        _this.textInfo = e.target.result;
+      };
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 main {
-  width: 980px;
-  margin: 0 auto;
   font-size: 16px;
-  margin-top: 81px;
 
   h2 {
     line-height: 1.85;

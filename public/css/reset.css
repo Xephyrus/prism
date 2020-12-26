@@ -1,64 +1,137 @@
 body,
-h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
     margin: 0;
     padding: 0;
 }
- 
-body, button, input, select, textarea {
+
+body,
+button,
+input,
+select,
+textarea {
     font: 12px/1.5 tahoma, arial, \5b8b\4f53;
 }
- 
-h1, h2, h3, h4, h5, h6 {
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-size: 100%;
 }
- 
-address, cite, dfn, em, var {
+
+address,
+cite,
+dfn,
+em,
+var {
     font-style: normal;
 }
- 
-code, kbd, pre, samp {
+
+code,
+kbd,
+pre,
+samp {
     font-family: couriernew, courier, monospace;
 }
- 
+
 small {
     font-size: 12px;
 }
- 
-ul, ol {
+
+ul,
+ol {
     list-style: none;
 }
- 
+
 a {
     text-decoration: none;
 }
- 
+
 a:hover {
     text-decoration: underline;
 }
- 
+
 sup {
     vertical-align: text-top;
 }
- 
+
 sub {
     vertical-align: text-bottom;
 }
- 
+
 legend {
     color: #000;
 }
- 
-fieldset, img {
+
+fieldset,
+img {
     border: 0;
 }
- 
-button, input, select, textarea {
+
+button,
+input,
+select,
+textarea {
     font-size: 100%;
 }
- 
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
 }
 
 /* 直接拷贝的淘宝css样式初始化 */
+
+main {
+    width: 980px;
+    margin: 0 auto;
+}
+
+/* 修改 滚动条 下面 的 宽度 */
+.scroll {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.scroll::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* 修改 滚动条的 下面 的 样式 */
+.scroll::-webkit-scrollbar-track {
+    cursor: default;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* 修改 滑块 */
+.scroll::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
