@@ -70,7 +70,6 @@ export default {
       }, 0);
     },
     onSelect() {
-      console.log(this.value);
       this.language = require(`prismjs/components/prism-${this.value}.js`);
       setTimeout(() => {
         Prism.highlightAll();

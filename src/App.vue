@@ -6,17 +6,29 @@
         <router-link to="/about">About</router-link>&nbsp;|
         <router-link to="/code">Code</router-link>
       </div>
+      <!-- <three-d></three-d> -->
+      <!-- <time-table></time-table> -->
     </div>
     <router-view style="margin-top: 100px" />
+    <to-top></to-top>
   </div>
 </template>
 
-<style lang="scss">
-body {
-  &::-webkit-scrollbar {
-    display: none;
+<script>
+// import ThreeD from "@/components/specials/ThreeD-Nav.vue"
+export default {
+  components: {
+    // ThreeD
   }
 }
+</script>
+
+<style lang="scss">
+// body {
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,6 +47,9 @@ body {
   top: 0;
   width: 100%;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   a {
     font-size: 14px;
     font-weight: bold;

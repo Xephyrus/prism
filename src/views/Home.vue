@@ -3,6 +3,8 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <main ref="main">
+      <!-- <s-button>折叠</s-button> -->
+      <!-- <icon iconName="qrcode"></icon> -->
       <template>
         <div v-for="(item, index) in codeList" :key="index + 1">
           <h2>{{ item.alias }}:</h2>

@@ -120,6 +120,7 @@ main {
 
 .scroll::-webkit-scrollbar {
     width: 8px;
+    cursor: default;
 }
 
 /* 修改 滚动条的 下面 的 样式 */

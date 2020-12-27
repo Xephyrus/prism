@@ -20,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    console.log(require("@/assets/img/leonardo.jpg"));
+    // console.log(require("@/assets/img/leonardo.jpg"));
     this.image = this.src;
     // const that = this;
     // setTimeout(function() {
