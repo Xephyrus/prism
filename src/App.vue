@@ -4,13 +4,15 @@
       <div class="nav-list">
         <router-link to="/">Home</router-link>&nbsp;|
         <router-link to="/about">About</router-link>&nbsp;|
-        <router-link to="/code">Code</router-link>
+        <router-link to="/code">Code</router-link>&nbsp;|
+        <router-link to="/demo">Demo</router-link>
       </div>
       <!-- <three-d></three-d> -->
       <!-- <time-table></time-table> -->
     </div>
     <router-view style="margin-top: 100px" />
     <to-top></to-top>
+    <!-- <loading></loading> -->
   </div>
 </template>
 

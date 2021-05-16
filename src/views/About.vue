@@ -6,6 +6,9 @@
       <div class="text">
         <p>这是一个前端项目， 使用vue + elementui + 自定义组件搭建， 以css 和 scss文件定义公共样式， 使用Primsmjs美化页面的代码文本，使用element UI二次封装自己的组件。</p>
       </div>
+      <logo name="xls"></logo>
+      <logo name="doc" />
+      <logo name="ppt"></logo>
     </main>
   </div>
 </template>
@@ -17,15 +20,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$primary-color: #333;
 main {
   font-size: 16px;
-  background: #000;
+  background: #f1f1f1;
   padding: 16px;
   min-height: 100vh;
 
   h1 {
     font-size: 2em;
-    color: #fff;
+    color: $primary-color;
     margin-bottom: 1em;
   }
 

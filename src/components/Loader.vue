@@ -37,7 +37,7 @@ export default {
     border-radius: 50%;
     border: 3px solid transparent;
     border-top-color: #9378db;
-    animation: spin 2s linear infinite;
+    animation: rotate 2s linear infinite;
   }
 
   #loader::before {
@@ -50,7 +50,7 @@ export default {
     border-radius: 50%;
     border: 3px solid transparent;
     border-top-color: #ba55da;
-    animation: spin 3s linear infinite;
+    animation: rotate 3s linear infinite;
   }
 
   #loader::after {

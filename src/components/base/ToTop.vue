@@ -47,15 +47,15 @@ export default {
     }
   },
   destroyed() {
-    console.log('zero')
+    console.log("zero");
     document.removeEventListener("scroll", this.onScroll);
   },
-   // 点击后拿到数据返回给下单地址
-  beforeRouteLeave (to, from, next) {
-    console.log(to)
-    console.log(from)
-    next()//一定不要忘记写
-  },
+  // 点击后拿到数据返回给下单地址
+  beforeRouteLeave(to, from, next) {
+    console.log(to);
+    console.log(from);
+    next(); //一定不要忘记写
+  }
 };
 </script>
 
@@ -65,6 +65,8 @@ export default {
   left: 50%;
   margin-left: 510px;
   margin-bottom: 20px;
+  background: #fbfbfb;
+  border-radius: 22px;
   bottom: 0;
   .toTop {
     width: 44px;

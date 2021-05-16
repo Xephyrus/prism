@@ -2,6 +2,8 @@
   <div>
     <main>
       <!-- <rainbow></rainbow> -->
+      <!-- <load></load> -->
+      <code-editor></code-editor>
       <scanning style="margin-top: -200px; left: 50%; top: 200px; margin-left: -710px;"></scanning>
       <div class="operation">
         <el-select v-model="value" @change="onSelect" placeholder="请选择">
@@ -31,8 +33,9 @@
         @input="onInput"
         @keydown="onKeyDown"
       ></textarea>
-      
+
       <code-block class="scroll" :language="value" :code="content"></code-block>
+      <!-- <logo name="ppt"></logo> -->
     </main>
   </div>
 </template>
@@ -41,6 +44,8 @@
 import Prism from "prismjs";
 import CodeBlock from "@/components/CodeBlock.vue";
 // import Rainbow from "@/components/specials/Rainbow.vue";
+// import Load from "@/components/animate/load.vue";
+import CodeEditor from "@/components/CodeEditor.vue";
 import Scanning from "@/components/specials/Scanning.vue";
 
 export default {
@@ -48,7 +53,9 @@ export default {
   components: {
     CodeBlock,
     // Rainbow,
-    Scanning
+    Scanning,
+    // Load
+    CodeEditor
   },
   data() {
     return {
@@ -70,10 +77,16 @@ export default {
       }, 0);
     },
     onSelect() {
-      this.language = require(`prismjs/components/prism-${this.value}.js`);
-      setTimeout(() => {
-        Prism.highlightAll();
-      }, 0);
+      try {
+        this.language = require(`prismjs/components/prism-${this.value}.min.js`);
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.content &&
+        setTimeout(() => {
+          Prism.highlightAll();
+        }, 0);
     },
     onKeyDown(e) {
       let textarea = this.$refs.textarea;

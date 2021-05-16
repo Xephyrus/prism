@@ -9,7 +9,6 @@ import './components/base/index.js'
 
 Vue.use(ElementUI)
 
-
 Vue.config.productionTip = false
 
 new Vue({
