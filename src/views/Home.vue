@@ -3,14 +3,15 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <main ref="main">
-      <video
+      <!-- <video
         id="video"
         class="video-js vjs-default-skin vjs-big-play-centered player"
         controls
         preload="none"
       >
         <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
-      </video>
+      </video> -->
+      <my-loader></my-loader>
       <!-- <s-button>折叠</s-button> -->
       <!-- <icon iconName="qrcode"></icon> -->
       <template>

@@ -10,7 +10,8 @@
         <i var="price">$99.00</i>
       </div>
     </div>
-
+    <div v-text="html"></div>
+    <div v-html="html"></div>
     <div class="instagram">
       <b>
         <svg
@@ -50,14 +51,41 @@
       </b>
     </div>
     <Pixiel></Pixiel>
+    <hls-player></hls-player>
   </div>
 </template>
 
 <script>
 import Pixiel from "@/components/Pixiel.vue";
+import HlsPlayer from "@/components/HlsPlayer";
+import {
+  saferHTML,
+  isMobileNumber,
+  intervalTime
+  // addFavorite
+} from "@/util/tools";
 export default {
   components: {
-    Pixiel
+    Pixiel,
+    HlsPlayer
+  },
+  data() {
+    return {
+      name: "",
+      html: "",
+      endTime: 1623084300
+    };
+  },
+  methods: {},
+  mounted() {
+    let html = saferHTML`<div data-v-b759dfe8="" class="icon"></div>`;
+    console.log(html);
+    this.html = html;
+    // addFavorite()
+    console.log(isMobileNumber("17806243573")),
+      setInterval(() => {
+        intervalTime(Date.now() / 1000, this.endTime);
+      }, 1000);
   }
 };
 </script>
