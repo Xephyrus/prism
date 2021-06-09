@@ -60,8 +60,8 @@ import Pixiel from "@/components/Pixiel.vue";
 import HlsPlayer from "@/components/HlsPlayer";
 import {
   saferHTML,
-  isMobileNumber,
-  intervalTime
+  // isMobileNumber,
+  // intervalTime
   // addFavorite
 } from "@/util/tools";
 export default {
@@ -82,10 +82,10 @@ export default {
     console.log(html);
     this.html = html;
     // addFavorite()
-    console.log(isMobileNumber("17806243573")),
-      setInterval(() => {
-        intervalTime(Date.now() / 1000, this.endTime);
-      }, 1000);
+    // console.log(isMobileNumber("17806243573")),
+    //   setInterval(() => {
+    //     intervalTime(Date.now() / 1000, this.endTime);
+    //   }, 1000);
   }
 };
 </script>

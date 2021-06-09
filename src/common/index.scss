@@ -1,0 +1,62 @@
+.dashed-x {
+    width: 300px;
+    // margin-top: 200px;
+    // margin-left: 470px;
+    height: 10px;
+    background: linear-gradient(to right,
+            transparent 0%,
+            transparent 50%,
+            #ccc 50%,
+            #ccc 100%);
+    background-size: 50px 1px;
+    background-repeat: repeat-x;
+}
+
+.dashed-y {
+    height: 300px;
+    width: 10px;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            transparent 50%,
+            #ccc 50%,
+            #ccc 100%);
+    background-size: 2px 40px;
+    background-repeat: repeat-y;
+}
+
+.dashed {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 2px;
+        background: linear-gradient(to bottom,
+                #ccc 0%,
+                #ccc 50%,
+                transparent 50%,
+                transparent 100%);
+        background-size: 2px 40px;
+        background-repeat: repeat-y;
+        left: 0;
+        top: 0;
+    }
+
+    &-item {
+        position: relative;
+        padding: 8px 16px;
+
+        &:last-child::before {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 100%;
+            width: 2px;
+            background-color: #fff;
+            left: 0;
+            top: 0;
+        }
+    }
+}

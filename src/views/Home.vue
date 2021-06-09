@@ -11,7 +11,14 @@
       >
         <source src="http://vjs.zencdn.net/v/oceans.mp4" type="video/mp4" />
       </video> -->
-      <my-loader></my-loader>
+      <!-- <my-loader></my-loader> -->
+      <div class="dashed-x"></div>
+      <!-- <div class="dashed-y"></div> -->
+      <ul class="dashed">
+        <li v-for="i in 10" :key="i" class="dashed-item">
+          {{ i }}
+        </li>
+      </ul>
       <!-- <s-button>折叠</s-button> -->
       <!-- <icon iconName="qrcode"></icon> -->
       <template>
