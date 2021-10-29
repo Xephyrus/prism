@@ -31,18 +31,18 @@ export function saferHTML(templateData) {
 // 加入收藏夹
 // @params sURL: 网页地址 sTitle: 网页标题
 // by maosheng
-// export function addFavorite(sURL = location.href, sTitle = document.title) {
-//     // console.log(location.href, document.title)
-//     try {
-//         window.external.addFavorite(sURL, sTitle);
-//     } catch (e) {
-//         try {
-//             window.sidebar.addPanel(sTitle, sURL, "");
-//         } catch (e) {
-//             alert("加入收藏失败，请使用Ctrl+D进行添加");
-//         }
-//     }
-// }
+export function addFavorite(sURL = location.href, sTitle = document.title) {
+    // console.log(location.href, document.title)
+    try {
+        window.external.addFavorite(sURL, sTitle);
+    } catch (e) {
+        try {
+            window.sidebar.addPanel(sTitle, sURL, "");
+        } catch (e) {
+            alert("加入收藏失败，请使用Ctrl+D进行添加");
+        }
+    }
+}
 
 // // var aa = document.documentElement.outerHTML
 // //     .match(

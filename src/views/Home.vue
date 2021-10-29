@@ -3,6 +3,13 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <main ref="main">
+      <!-- <process-bar :percent="78"></process-bar> -->
+      <drag></drag>
+      <!-- <component
+        v-for="(item, idx) in components"
+        :key="idx"
+        :is="item.name"
+      ></component> -->
       <!-- <video
         id="video"
         class="video-js vjs-default-skin vjs-big-play-centered player"
@@ -25,12 +32,21 @@
         <div v-for="(item, index) in codeList" :key="index + 1">
           <h2>{{ item.alias }}:</h2>
           <code-block :language="item.lang" :code="item.code"></code-block>
-          <code-block v-if="index === 0" :language="'css'" :code="'p { color: red }'"></code-block>
+          <code-block
+            v-if="index === 0"
+            :language="'css'"
+            :code="'p { color: red }'"
+          ></code-block>
         </div>
       </template>
 
       <el-button type="primary" @click="changeTheme('')">Click</el-button>
-      <card :curOption="themeName" :datalist="list" class="fixed-card" @on-select="onSelect"></card>
+      <card
+        :curOption="themeName"
+        :datalist="list"
+        class="fixed-card"
+        @on-select="onSelect"
+      ></card>
       <loader :active="active"></loader>
     </main>
   </div>
@@ -47,6 +63,7 @@ import Prism from "prismjs";
 import "prismjs/components/prism-python";
 import CodeBlock from "@/components/CodeBlock.vue";
 import Loader from "@/components/Loader.vue";
+import Drag from '@/components/Drag.vue';
 // import loadFile from '../assets/js/loadFille';
 // const code = require('../../public/code/formula.py').default
 
@@ -55,18 +72,20 @@ export default {
   components: {
     CodeBlock,
     Card,
-    Loader
+    Loader,
+    Drag
   },
   data() {
     return {
       msg: "hello",
       theme: null,
+      components: [{ name: "el-input", value: "123" }, { name: "el-radio" }],
       themeName: "",
       codeList: [
         {
           code: '<pre><code class="language-css">p { color: red }</code></pre>',
           lang: "html",
-          alias: "HTML"
+          alias: "HTML",
         },
         {
           code: `#!python3
@@ -166,7 +185,7 @@ if __name__ == "__main__":
   print('formula')
 `,
           lang: "python",
-          alias: "Python"
+          alias: "Python",
         },
         {
           code: `
@@ -184,12 +203,12 @@ function fibonacci(n) {
 console.log(fibonacci(100))
           `,
           lang: "javascript",
-          alias: "JS"
+          alias: "JS",
         },
         {
           code: "const fibo = n => n <= 1 ? 1 : fibo(n-1) + fibo(n-2)",
           lang: "javascript",
-          alias: "JS"
+          alias: "JS",
         },
         {
           code: `import math
@@ -203,47 +222,47 @@ def fibo(n):
     return 1 if (n <= 1) else fibo(n-1) + fibo(n-2)
     `,
           lang: "python",
-          alias: "Python"
+          alias: "Python",
         },
         {
           code: `p { font-size: 16px; }`,
           lang: "css",
-          alias: "CSS"
-        }
+          alias: "CSS",
+        },
       ],
       list: [
         {
           label: "默认",
-          value: ""
+          value: "",
         },
         {
           label: "神秘",
-          value: "coy"
+          value: "coy",
         },
         {
           label: "暗黑",
-          value: "dark"
+          value: "dark",
         },
         {
           label: "欧凯迪亚",
-          value: "okaidia"
+          value: "okaidia",
         },
         {
           label: "时髦",
-          value: "funky"
+          value: "funky",
         },
         {
           label: "日光灯",
-          value: "solarizedlight"
+          value: "solarizedlight",
         },
         {
           label: "暮光",
-          value: "twilight"
+          value: "twilight",
         },
         {
           label: "明日",
-          value: "tomorrow"
-        }
+          value: "tomorrow",
+        },
       ],
       apple:
         "\n\
@@ -265,7 +284,7 @@ def fibo(n):
                                .cooc,.   .cooc,.",
       active: false,
       myPlayer: {},
-      fullScreen: false
+      fullScreen: false,
     };
   },
   mounted() {
@@ -281,8 +300,8 @@ def fibo(n):
     getThemeName() {
       let current = document.getElementById("theme");
       let theme = current.href;
-      let themeList = this.list.map(item => item.value);
-      let result = themeList.filter(a => a && theme.includes(a));
+      let themeList = this.list.map((item) => item.value);
+      let result = themeList.filter((a) => a && theme.includes(a));
       this.themeName = result[0] || "";
     },
     changeTheme(theme) {
@@ -304,7 +323,7 @@ def fibo(n):
       if (typeof FileReader === "undefined") {
         this.$message({
           type: "info",
-          message: "您的浏览器不支持文件读取。"
+          message: "您的浏览器不支持文件读取。",
         });
         return;
       }
@@ -338,7 +357,7 @@ def fibo(n):
           //       "https://vd4.bdstatic.com/mda-ki03a8da4u02jwic/hd/mda-ki03a8da4u02jwic.mp4"
           //   }
           // ],
-          playbackRates: [0.5, 1, 1.5, 2] //倍速播放
+          playbackRates: [0.5, 1, 1.5, 2], //倍速播放
         },
         function onPlayerReady() {
           videojs.log("Your player is ready!"); // 比如： 播放量+1请求
@@ -352,8 +371,8 @@ def fibo(n):
           });
         }
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

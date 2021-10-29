@@ -5,7 +5,8 @@
         <router-link to="/">Home</router-link>&nbsp;|
         <router-link to="/about">About</router-link>&nbsp;|
         <router-link to="/code">Code</router-link>&nbsp;|
-        <router-link to="/demo">Demo</router-link>
+        <router-link to="/demo">Demo</router-link>&nbsp;|
+        <router-link to="/mobile">Mobile</router-link>
       </div>
       <!-- <three-d></three-d> -->
       <!-- <time-table></time-table> -->

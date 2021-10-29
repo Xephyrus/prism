@@ -46,7 +46,7 @@ export default {
       });
     }
   },
-  destroyed() {
+  beforeDestroy() {
     console.log("zero");
     document.removeEventListener("scroll", this.onScroll);
   },
@@ -74,7 +74,6 @@ export default {
     cursor: pointer;
     border-radius: 50%;
     word-break: break-all;
-    // background-color: #f1f1f1;
     background-color: #fbfbfb;
     display: flex;
     align-items: center;

@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-27 19:45:28
+ * @LastEditTime: 2021-10-25 16:41:30
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: \prism\src\components\HlsPlayer.vue
+-->
 <template>
   <div class="hls-player">
     <video ref="videoRefsmall" :width="(16/9)*smallVideoHieght" :height="smallVideoHieght" controls></video>
@@ -37,7 +45,7 @@ export default {
   mounted() {
     this.hls = new Hls();
     this.hls.attachMedia(this.$refs.videoRefsmall);
-    const source = ["https://p-events-delivery.akamaized.net/2010ayctcrodak763xivpxn4htcuhco9/m3u8/vod_index-2MxnV7vcNFJoAHxqBcV9CU3w3JsXVVgh.m3u8", "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"]
+    const source = ["localhost:8081/api/hls/videos/202012/15/378376812/,1080P_4000K,720P_4000K,480P_2000K,240P_1000K,_378376812.mp4.urlset/master.m3u8?validfrom=1632217109&validto=1632224309&ip=47.75.75.227&ipa=47.75.75.227&hdl=-1&hash=99ocapLeLn1DAy0mlrq5Y1p3MU8%3D"]
     this.hls.loadSource(source[0]);
     this.hls.on(Hls.Events.MANIFEST_PARSED, function() {
       this.$refs.videoRefsmall.pause();

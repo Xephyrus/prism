@@ -1,12 +1,54 @@
 <template>
   <div class="main">
+    <el-tree
+      @check="onClick"
+      :data="data"
+      show-checkbox
+      node-key="val"
+      ref="tree"
+      highlight-current
+      :render-content="render"
+      :props="defaultProps"
+    >
+      <span class="custom-tree-node" slot-scope="{ node }">
+        <span>{{ node.label }}</span>
+        <span>
+          <!-- <el-button type="text" size="mini" @click="() => append(data)">
+            Append
+          </el-button>
+          <el-button type="text" size="mini" @click="() => remove(node, data)">
+            Delete
+          </el-button>
+          <el-button type="text" size="mini" @click="() => getChildren(node, data)">
+            Children
+          </el-button> -->
+          <template>
+            <span v-for="(item, index) in getChildren(node)" :key="index">
+              {{ item.label }}
+            </span>
+          </template>
+        </span>
+      </span>
+    </el-tree>
+    <div>
+      <el-input v-model="obj.a"></el-input>
+      <el-input v-model="obj.b"></el-input>
+    </div>
+    <div>
+      <Mark></Mark>
+    </div>
+    <div class="black-bg">
+      <Neumorphism></Neumorphism>
+    </div>
     <div class="shopping">
       <div class="shopping-item">
         <img
           var="img"
           src="https://i5.walmartimages.com/asr/57f89337-45de-4cd4-9f05-e26a107b2644_1.5db5139ea852e09b168744041199fc59.jpeg?odnHeight=100&amp;odnWidth=100&amp;odnBg=FFFFFF"
         />
-        <div var="title">Keurig K-Select Single Serve, K-Cup Pod Coffee Maker, Matte White</div>
+        <div var="title">
+          Keurig K-Select Single Serve, K-Cup Pod Coffee Maker, Matte White
+        </div>
         <i var="price">$99.00</i>
       </div>
     </div>
@@ -44,8 +86,8 @@
               <path
                 fill="currentColor"
                 d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"
-              />
-            </svg>30
+              /></svg
+            >30
           </i>
         </span>
       </b>
@@ -56,7 +98,8 @@
 </template>
 
 <script>
-import Pixiel from "@/components/Pixiel.vue";
+import Neumorphism from "@/components/Neumorphism";
+import Pixiel from "@/components/Pixiel";
 import HlsPlayer from "@/components/HlsPlayer";
 import {
   saferHTML,
@@ -64,29 +107,132 @@ import {
   // intervalTime
   // addFavorite
 } from "@/util/tools";
+// import Mark from '../components/base/Mark.vue';
+let id = 1000;
 export default {
   components: {
     Pixiel,
-    HlsPlayer
+    HlsPlayer,
+    Neumorphism,
   },
   data() {
     return {
       name: "",
       html: "",
-      endTime: 1623084300
+      endTime: 1623084300,
+      obj: {
+        a: 124,
+        b: "我是b",
+      },
+      defaultProps: {
+        children: "children",
+        label: "label",
+      },
+      data: [
+        {
+          id: 1,
+          label: "一级 1",
+          color: 'red',
+          children: [
+            {
+              id: 4,
+              label: "二级 1-1",
+              children: [
+                {
+                  id: 9,
+                  label: "三级 1-1-1",
+                },
+                {
+                  id: 10,
+                  label: "三级 1-1-2",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          id: 2,
+          label: "一级 2",
+          color: 'blue',
+          children: [
+            {
+              id: 5,
+              label: "二级 2-1",
+            },
+            {
+              id: 6,
+              label: "二级 2-2",
+            },
+          ],
+        },
+        {
+          id: 3,
+          label: "一级 3",
+          color: 'green',
+          children: [
+            {
+              id: 7,
+              label: "二级 3-1",
+            },
+            {
+              id: 8,
+              label: "二级 3-2",
+            },
+          ],
+        },
+      ],
     };
   },
-  methods: {},
+  methods: {
+    onClick(val) {
+      const allChecked = this.$refs.tree.getCheckedNodes();
+      console.log(allChecked.includes(val));
+      console.log(val.val);
+    },
+    append(data) {
+      const newChild = { id: id++, label: "testtest", children: [] };
+      if (!data.children) {
+        this.$set(data, "children", []);
+      }
+      data.children.push(newChild);
+    },
+
+    remove(node, data) {
+      const parent = node.parent;
+      const children = parent.data.children || parent.data;
+      const index = children.findIndex((d) => d.id === data.id);
+      children.splice(index, 1);
+    },
+    getChildren(node, data) {
+      console.log(node, data)
+      console.log(node.childNodes.filter(item => item.checked))
+      return node.childNodes.filter(item => item.checked)
+    },
+    render() {
+      
+    }
+  },
   mounted() {
     let html = saferHTML`<div data-v-b759dfe8="" class="icon"></div>`;
-    console.log(html);
+    // console.log(html);
     this.html = html;
     // addFavorite()
     // console.log(isMobileNumber("17806243573")),
     //   setInterval(() => {
     //     intervalTime(Date.now() / 1000, this.endTime);
     //   }, 1000);
-  }
+  },
+
+  watch: {
+    obj: {
+      handler(newName, oldName) {
+        console.log(newName, oldName);
+      },
+      //immediate:true代表如果在 wacth 里声明了obj之后，就会立即先去执行里面的handler方法，
+      immediate: true,
+      deep: true, // 开启深度监听，默认是false
+    },
+  },
 };
 </script>
 
@@ -95,6 +241,12 @@ export default {
   width: 980px;
   margin: 0 auto;
   min-height: 300px;
+
+  .black-bg {
+    background: #282828;
+    text-align: center;
+    padding: 10px;
+  }
 
   .shopping {
     .shopping-item {
